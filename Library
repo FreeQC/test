@@ -1,0 +1,85 @@
+package yqc;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Test extends JFrame
+{
+	JLabel bq1;    //北部
+	JButton b,an3;  //南部       
+	JPanel mb1;		//中部
+	JPanel mb2;
+	JLabel bq2,bq3,bq4,bq5,bq6;
+	JTextField wbk;
+	JPasswordField mmk;
+
+
+	
+	public static void main(String[] args)
+	{
+		Test AA=new Test();
+	}
+	public Test()
+	{
+		bq2=new JLabel("帐号",JLabel.CENTER);
+		bq3=new JLabel( "密码",JLabel.CENTER);
+		bq4=new JLabel("欢迎访问，版本V2.0",JLabel.CENTER);
+		bq4.setFont(new Font("仿宋",Font.PLAIN,16));
+		bq4.setForeground(Color.BLUE);
+		bq6=new JLabel();
+	
+		wbk=new JTextField();
+		mmk=new JPasswordField();
+		
+		bq1=new JLabel(new ImageIcon("L//Tushuguan.png"));//北部
+		mb1=new JPanel();					//南部
+		b=new JButton(new ImageIcon("L//Denglu.png"));
+		
+		mb2=new JPanel();
+
+		
+		mb2.setLayout(new GridLayout(2,3));
+		
+		mb1.add(b); 		//mb1.add(an3);
+		mb2.add(bq2);  mb2.add(wbk); 	 mb2.add(bq6);	  mb2.add(bq3);		mb2.add(mmk);
+		mb2.add(bq4);
+		
+		//添加组件的顺序不能改变否则会出错。
+		this.add(mb1,BorderLayout.SOUTH);
+		this.add(bq1,BorderLayout.NORTH);
+		this.add(mb2,BorderLayout.CENTER);
+	
+
+		this.setTitle("图书馆登录系统");
+		this.setSize(500,250);
+		this.setLocation(500,500);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+
+
+		b.addActionListener(new ActionListener()
+		  {
+		   public void actionPerformed(ActionEvent e)
+		   {
+			   User u1= new Teacher("赵老师已登录",12,"guest","123");
+			  User u2= new Student("13-2 于前程已登录",12,"201303011199","123");
+			  User u3= new Student("管理员已登录",12,"admin","123");
+			  if(wbk.getText().equals(u1.loginName)&& mmk.getText().equals(u1.passWord)){
+			    	JOptionPane.showMessageDialog(null,u1.read());
+			    }
+			   if(wbk.getText().equals(u2.loginName) && mmk.getText().equals(u2.passWord)){
+			    	JOptionPane.showMessageDialog(null,u2.read());
+			   }
+			   if(wbk.getText().equals(u3.loginName) && mmk.getText().equals(u3.passWord)){
+			    	JOptionPane.showMessageDialog(null,u3.read());
+			   }
+		   }
+		  
+		  });
+		
+	}
+}
